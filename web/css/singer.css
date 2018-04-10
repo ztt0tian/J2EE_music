@@ -1,0 +1,18 @@
+.Word_a{
+    margin-left: 1px;
+
+}
+.num a{
+    display: inline-block;
+    padding: 0px 5px;
+}
+.Word_a:hover {
+    background-color: #2e6da4;
+}
+.singerItem a{
+    color: black;
+}
+.singerItem a:hover{
+    color: #2e6da4;
+}
+

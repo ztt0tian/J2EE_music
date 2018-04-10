@@ -1025,7 +1025,9 @@
     </column>
     <column id="264" parent="260" name="type">
       <Position>4</Position>
-      <DataType>int(1)|0</DataType>
+      <DataType>varchar(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="265" parent="260" name="email">
