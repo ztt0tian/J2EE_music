@@ -5,11 +5,16 @@
         "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
+    <!--使用开发模式，详细错误提示-->
+    <constant name="struts.devMode" value="true"></constant>
+    <!--将对象交给spring管理-->
     <constant name="struts.objectFactory" value="spring"></constant>
-
-    <package name="user" namespace="/" extends="struts-default">
-        <action name="add" class="com.ztt.action.AddAction" method="add">
-            <result name="success">/success.jsp</result>
-        </action>
-    </package>
+    <!--知道资源编码类型-->
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+    <!-- 指定每次请求到达，重新加载资源文件 -->
+    <constant name="struts.i18n.reload" value="false" />
+    <!-- 指定每次配置文件更改后，自动重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="false" />
+    <!--默认后缀名-->
+    <!--<constant name="struts.action.extension" value=".action"></constant>-->
 </struts>

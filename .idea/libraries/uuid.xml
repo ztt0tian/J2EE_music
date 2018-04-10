@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="uuid">
-    <CLASSES>
-      <root url="jar://D:/CSDN/uuid.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

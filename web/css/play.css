@@ -1,0 +1,9 @@
+.downloadBtn{
+    opacity: 0.5;
+    margin-top: 3em;
+}
+#music-audio-contain{
+    /*background-color: #5e5e5e;*/
+    background-color: black;
+    margin-top: 3em;
+}

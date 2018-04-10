@@ -46,12 +46,17 @@
     <orderEntry type="library" name="Struts 2-2.5.14.1" level="project" />
     <orderEntry type="library" name="Spring-4.3.14.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.0.M11" level="application_server_libraries" />
-    <orderEntry type="library" name="Hibernate 5.2.12-5.2.12" level="project" />
+    <orderEntry type="library" name="Hibernate 4.0.1-4.1.1" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.26" level="project" />
     <orderEntry type="library" name="commons-dbcp2-2.1" level="project" />
     <orderEntry type="library" name="commons-pool2-2.4.2" level="project" />
     <orderEntry type="library" name="uuid" level="project" />
     <orderEntry type="library" name="spring-web-4.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="struts2-spring-plugin-2.3.4.1" level="project" />
+    <orderEntry type="library" name="aspectj-1.8.13" level="project" />
+    <orderEntry type="library" name="aopalliance-1.0" level="project" />
+    <orderEntry type="library" name="cglib-3.0" level="project" />
+    <orderEntry type="library" name="aspectjweaver-1.8.7" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.7.25" level="project" />
   </component>
 </module>

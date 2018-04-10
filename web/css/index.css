@@ -1,0 +1,53 @@
+
+.top{
+    color: white;
+    background-color: black;
+    margin-left: 0;
+    margin-right: 0;
+}
+.footer{
+    color: white;
+    background-color: black;
+    font-size: x-large;margin-left: 0;
+    margin-right: 0;
+}
+.top strong{
+    font-size: 300%;
+}
+.input-group{
+    margin-top: 15px;
+    float: left;
+}
+.btn-group{
+    padding-left: 10%;
+}
+.swiper-container {
+    margin-top: 4px;
+    width: 80%;
+    height: auto;
+}
+.navbar{
+    margin-bottom: 2px;
+}
+.itemTitle{
+    margin-top: 5px;
+    overflow:hidden;
+    zoom:1
+}
+
+.leftItem{
+    float: left;
+}
+.rightItem{
+    float: right;
+}
+.gedanItem{
+    margin-top: 10px;
+}
+.operateItem{
+    float: left;
+    margin-left: 10px;
+}
+.operate:after{
+    overflow: hidden;
+}

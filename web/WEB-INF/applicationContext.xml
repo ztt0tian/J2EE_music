@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean class="test.testSpring" id="testSpring">
-        <property name="name" value="Spring!"></property>
-    </bean>
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--自动扫描包-->
+    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="com.ztt"></context:component-scan>
     <!--data connection-->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/j2ee_music"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/j2ee_music?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"></property>
         <property name="username" value="root"></property>
         <property name="password" value="123456789"></property>
     </bean>
-
     <!-- session factory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
@@ -22,21 +31,24 @@
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/j2ee_music</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <!-- 可以自动创建数据库表(create),不创建(none) -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
-        <property name="annotatedClasses">
+        <!-- 包扫描的方式加载注解类(推荐) -->
+        <property name="packagesToScan">
             <list>
-                <value>com.ztt.bean.User</value>
+                <value>com.ztt.*</value>
             </list>
         </property>
     </bean>
-
-    <!--Hibernate测试加入-->
-    <bean id="regist" class="com.ztt.services.RegistImpl">
-        <property name="sessionFactory" ref="sessionFactory"></property>
+     <!--JDBC事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
     </bean>
+    <!-- 用注解来实现事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 
-    <bean id="registAction" class="com.ztt.action.AddAction">
-        <property name="regist" ref="regist"></property>
-    </bean>
+    <!--aop 注解实现日志 让spring使用cglib的代理方式-->
+    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 </beans>

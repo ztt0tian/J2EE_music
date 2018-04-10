@@ -9,6 +9,8 @@
       <root url="jar://$PROJECT_DIR$/lib/log4j.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/freemarker.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/struts2-core.jar!/" />
+      <root url="jar://P:/struts-2.5.14.1-all/struts-2.5.14.1/lib/struts2-convention-plugin-2.5.14.1.jar!/" />
+      <root url="jar://P:/struts-2.5.14.1-all/struts-2.5.14.1/lib/asm-5.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
