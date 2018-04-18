@@ -40,7 +40,7 @@
                 <h4 class="modal-title" id="myModalLabel">登录</h4>
             </div>
             <div class="modal-body">
-                <form class="lgoinForm" role="form" action="user/login" method="get">
+                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="get">
                     <div class="form-group">
                         <label>邮箱</label>
                         <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入名称">
@@ -71,7 +71,7 @@
                 <h4 class="modal-title" id="RegistModalLabel">注册</h4>
             </div>
             <div class="modal-body">
-                <form class="RegistForm" role="form" action="user/regist" method="get">
+                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="get">
                     <%--<div class="form-group" hidden>--%>
                     <%--<input type="text" name="user.id" class="form-control" value="1214564">--%>
                     <%--</div>--%>
@@ -121,9 +121,9 @@
             }
             else{
                 %>
-        <div class="col-md-3 btn-group col-md-offset-2">
+        <div class="col-md-4 btn-group col-md-offset-1">
         <strong class="text-center">欢迎,<a href="#"><%=user.getName()%></a></strong>
-            退出
+            <strong class="text-center"> <a href="<%=basePath%>user/exit">注销</a></strong>
         <%
             }
         %>

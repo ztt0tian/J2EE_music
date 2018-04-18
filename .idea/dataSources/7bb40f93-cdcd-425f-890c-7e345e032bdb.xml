@@ -1002,41 +1002,212 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="260" parent="14" name="user">
+    <table id="260" parent="14" name="admin">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="261" parent="260" name="id">
+    <table id="261" parent="14" name="album">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="262" parent="14" name="singer">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="263" parent="14" name="song">
+      <Engine>InnoDB</Engine>
+    </table>
+    <table id="264" parent="14" name="user">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="265" parent="260" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="266" parent="260" name="adminname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="267" parent="260" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="268" parent="260" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="269" parent="261" name="album_id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="270" parent="261" name="album_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="271" parent="261" name="album_pic_url">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="272" parent="261" name="singer_id">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="273" parent="261" name="FK5897E6F31C8CE77">
+      <ColNames>singer_id</ColNames>
+    </index>
+    <key id="274" parent="261" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>album_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="275" parent="261" name="FK5897E6F31C8CE77">
+      <ColNames>singer_id</ColNames>
+      <RefSchemaName>j2ee_music</RefSchemaName>
+      <RefTableName>singer</RefTableName>
+      <RefColNames>singer_id</RefColNames>
+    </foreign-key>
+    <column id="276" parent="262" name="singer_id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="277" parent="262" name="type">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="278" parent="262" name="singer_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="279" parent="262" name="singer_pic_url">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="280" parent="262" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>singer_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="281" parent="263" name="id">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="262" parent="260" name="name">
+    <column id="282" parent="263" name="listen_counts">
+      <Position>2</Position>
+      <DataType>bigint(20)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="283" parent="263" name="music_type">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="263" name="music_name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="263" name="music_pic_url">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="286" parent="263" name="music_url">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="287" parent="263" name="album_id">
+      <Position>7</Position>
+      <DataType>varchar(255)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="263" name="singer_id">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="289" parent="263" name="id">
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="290" parent="263" name="FK35F515EB360D7D">
+      <ColNames>album_id</ColNames>
+    </index>
+    <index id="291" parent="263" name="FK35F51531C8CE77">
+      <ColNames>singer_id</ColNames>
+    </index>
+    <key id="292" parent="263" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="293" parent="263" name="id">
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>id</UnderlyingIndexName>
+    </key>
+    <foreign-key id="294" parent="263" name="FK35F515EB360D7D">
+      <ColNames>album_id</ColNames>
+      <RefSchemaName>j2ee_music</RefSchemaName>
+      <RefTableName>album</RefTableName>
+      <RefColNames>album_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="295" parent="263" name="FK35F51531C8CE77">
+      <ColNames>singer_id</ColNames>
+      <RefSchemaName>j2ee_music</RefSchemaName>
+      <RefTableName>singer</RefTableName>
+      <RefColNames>singer_id</RefColNames>
+    </foreign-key>
+    <column id="296" parent="264" name="id">
+      <Position>1</Position>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="297" parent="264" name="name">
       <Position>2</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="260" name="password">
+    <column id="298" parent="264" name="password">
       <Position>3</Position>
       <DataType>varchar(16)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="260" name="type">
+    <column id="299" parent="264" name="type">
       <Position>4</Position>
       <DataType>varchar(1)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="260" name="email">
+    <column id="300" parent="264" name="email">
       <Position>5</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="266" parent="260" name="PRIMARY">
+    <key id="301" parent="264" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
