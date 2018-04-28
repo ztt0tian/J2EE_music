@@ -24,7 +24,6 @@ import java.util.Map;
  */
 @Namespace("/user")
 @ParentPackage("struts-default")
-@Component("regist")
 @Scope("prototype")
 public class UserAction extends ActionSupport {
     @Autowired

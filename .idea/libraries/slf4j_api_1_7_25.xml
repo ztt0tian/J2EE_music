@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://P:/slf4j-1.7.25/slf4j-api-1.7.25.jar!/" />
       <root url="jar://P:/slf4j-1.7.25/slf4j-log4j12-1.7.25.jar!/" />
+      <root url="jar://P:/音乐解析jar/jaudiotagger-2.0.3.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -9,7 +9,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
-    User user=(User)session.getAttribute("login_user");
+    User user = (User) session.getAttribute("login_user");
 %>
 <!DOCTYPE html>
 <html>
@@ -105,311 +105,317 @@
     </div><!-- /.modal -->
 </div>
 <div class="top row">
-    <strong class="col-md-4 text-center">z-music</strong>
-    <div class="input-group col-md-3" style="position: relative;float: left">
-        <input type="text" class="form-control input-sm"><a class="input-group-addon btn btn-primary">搜索</a>
-    </div>
-    <%
+    <a href="<%=basePath %>index.jsp"><strong class="col-md-4 text-center">z-music</strong></a>
+    <form id="searchForm" role="form" action="<%=basePath%>music/search" method="get" target="_blank">
+        <div class="input-group col-md-3" style="position: relative;float: left">
+
+            <input type="text" class="form-control input-sm" name="keyword">
+            <input type="hidden" name="search_type" value="song">
+            <a class="input-group-addon btn btn-primary"
+               href="javascript:document.getElementById('searchForm').submit();">搜索</a>
+
+        </div>
+    </form>
+        <%
         if(user==null){
 
 
     %>
     <div class="col-md-3 btn-group col-md-offset-2" style="margin-top: 12px">
-        <button data-toggle="modal" data-target="#LoginModal" href="" class="btn btn-default">登录</button>
-        <button data-toggle="modal" data-target="#RegisterModal" href="" type="button" class="btn btn-default">注册</button>
+        <button data-toggle="modal" data-target="#LoginModal" href="" type="button" class="btn btn-default">登录</button>
+        <button data-toggle="modal" data-target="#RegisterModal" href="" type="button" class="btn btn-default">注册
+        </button>
         <%
-            }
-            else{
-                %>
-        <div class="col-md-4 btn-group col-md-offset-1">
-        <strong class="text-center">欢迎,<a href="#"><%=user.getName()%></a></strong>
-            <strong class="text-center"> <a href="<%=basePath%>user/exit">注销</a></strong>
-        <%
-            }
+        } else {
         %>
+        <div class="col-md-4 btn-group col-md-offset-1">
+            <strong class="text-center">欢迎,<a href="#"><%=user.getName()%>
+            </a></strong>
+            <strong class="text-center"> <a href="<%=basePath%>user/exit">注销</a></strong>
+            <%
+                }
+            %>
+        </div>
     </div>
-</div>
-<div class="navbar">
-    <ul class="nav nav-pills nav-justified">
-        <li class="active"><a href="index.html"><strong>首页</strong></a></li>
-        <li><a href="ranklist.html?rankType=1"><strong>榜单</strong></a></li>
-        <li><a href="singer.html"><strong>歌手</strong></a></li>
-        <li><a href="songsheet.html"><strong>歌单</strong></a></li>
-        <li><a href="mymusic.html"><strong>我的音乐</strong></a></li>
-    </ul>
-</div>
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide"><img class="img-responsive"
-                                       src="http://imge.kugou.com/commendpic/20180227/20180227092844509871.jpg"></div>
-        <div class="swiper-slide"><img class="img-responsive"
-                                       src="http://imge.kugou.com/commendpic/20180116/20180116154559427100.jpg"></div>
-        <div class="swiper-slide"><img class="img-responsive"
-                                       src="http://imge.kugou.com/commendpic/20170913/20170913175748750902.jpg"></div>
+    <div class="navbar">
+        <ul class="nav nav-pills nav-justified">
+            <li class="active"><a href="<%=basePath %>index.jsp"><strong>首页</strong></a></li>
+            <li><a href="<%=basePath %>musicrank/song_rank?rankType=playTop"><strong>榜单</strong></a></li>
+            <li><a href="<%=basePath %>pages/singer.jsp"><strong>歌手</strong></a></li>
+            <li><a href="<%=basePath %>pages/songsheet.jsp"><strong>歌单</strong></a></li>
+            <li><a href="<%=basePath%>music/recommend"><strong>我的音乐</strong></a></li>
+        </ul>
     </div>
-    <!-- 如果需要分页器 -->
-    <div class="swiper-pagination"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img class="img-responsive"
+                                           src="http://imge.kugou.com/commendpic/20180227/20180227092844509871.jpg">
+            </div>
+            <div class="swiper-slide"><img class="img-responsive"
+                                           src="http://imge.kugou.com/commendpic/20180116/20180116154559427100.jpg">
+            </div>
+            <div class="swiper-slide"><img class="img-responsive"
+                                           src="http://imge.kugou.com/commendpic/20170913/20170913175748750902.jpg">
+            </div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
 
-    <!-- 如果需要导航按钮 -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
-    <!--&lt;!&ndash; 如果需要滚动条 &ndash;&gt;-->
-    <!--<div class="swiper-scrollbar"></div>-->
-</div>
-<div class="container">
-    <div class="col-md-6 left">
-        <div class="itemTitle">
-            <strong class="leftItem">精选歌单</strong>
-            <a class="rightItem" href="#">更多</a>
+        <!--&lt;!&ndash; 如果需要滚动条 &ndash;&gt;-->
+        <!--<div class="swiper-scrollbar"></div>-->
+    </div>
+    <div class="container">
+        <div class="col-md-6 left">
+            <div class="itemTitle">
+                <strong class="leftItem">精选歌单</strong>
+                <a class="rightItem" href="<%=basePath%>pages/songsheet.jsp">更多</a>
+            </div>
+            <div class="gedan row">
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+                <div class="col-md-4 gedanItem">
+                    <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+                </div>
+            </div>
         </div>
-        <div class="gedan row">
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+        <div class="col-md-6 left">
+            <div class="itemTitle">
+                <strong class="leftItem">热门榜单</strong>
+                <a class="rightItem" href="<%=basePath%>pages/ranklist.jsp?rankType=1">更多</a>
             </div>
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+            <div class="bangdan  row">
+                <div class="col-md-4 left">
+                    <img class="img-responsive"
+                         src="http://imge.kugou.com/v2/rank_cover/T1M4h4BKKj1RCvBVdK.jpg_240x240.jpg">
+                </div>
+                <div class="col-md-8 right" style="padding: 5px">
+                    <ul class="list-group">
+                        <li class="list-group-item">music1</li>
+                        <li class="list-group-item">music1</li>
+                        <li class="list-group-item">music1</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+            <div class="bangdan  row">
+                <div class="col-md-4 left">
+                    <img class="img-responsive"
+                         src="http://imge.kugou.com/v2/rank_cover/T1fHd4BXd_1RCvBVdK.jpg_240x240.jpg">
+                </div>
+                <div class="col-md-8 right" style="padding: 5px">
+                    <ul class="list-group">
+                        <li class="list-group-item">music1</li>
+                        <li class="list-group-item">music1</li>
+                        <li class="list-group-item">music1</li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+        </div>
+        <div class="col-md-6 left">
+            <div class="itemTitle">
+                <strong class="leftItem">新歌首发</strong>
             </div>
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+            <table class="table table-striped table-hover" style="margin-top: 10px">
+                <thead>
+                <tr>
+                    <th>歌名</th>
+                    <th>作者</th>
+                    <th>专辑</th>
+                    <th>播放/下载</th>
+                    <th>时长</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                <tr>
+                    <td>music1</td>
+                    <td>Anna</td>
+                    <td>album1</td>
+                    <td class="operate">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/play.png">
+                        <img class="img-responsive operateItem" src="<%=basePath %>image/download.png">
+                    </td>
+                    <td>5:00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 left">
+            <div class="itemTitle">
+                <strong class="leftItem">热门歌手</strong>
+                <a class="rightItem" href="<%=basePath%>pages/singer.jsp">更多</a>
             </div>
-            <div class="col-md-4 gedanItem">
-                <img src="http://imge.kugou.com/soft/collection/150/20180221/20180221211513730780.jpg">
+            <div class="geshou row">
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
+                         class="img-responsive">
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 left">
-        <div class="itemTitle">
-            <strong class="leftItem">热门榜单</strong>
-            <a class="rightItem" href="#">更多</a>
-        </div>
-        <div class="bangdan  row">
-            <div class="col-md-4 left">
-                <img class="img-responsive"
-                     src="http://imge.kugou.com/v2/rank_cover/T1M4h4BKKj1RCvBVdK.jpg_240x240.jpg">
-            </div>
-            <div class="col-md-8 right" style="padding: 5px">
-                <ul class="list-group">
-                    <li class="list-group-item">music1</li>
-                    <li class="list-group-item">music1</li>
-                    <li class="list-group-item">music1</li>
-                </ul>
-            </div>
-        </div>
-        <div class="bangdan  row">
-            <div class="col-md-4 left">
-                <img class="img-responsive"
-                     src="http://imge.kugou.com/v2/rank_cover/T1fHd4BXd_1RCvBVdK.jpg_240x240.jpg">
-            </div>
-            <div class="col-md-8 right" style="padding: 5px">
-                <ul class="list-group">
-                    <li class="list-group-item">music1</li>
-                    <li class="list-group-item">music1</li>
-                    <li class="list-group-item">music1</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 left">
-        <div class="itemTitle">
-            <strong class="leftItem">新歌首发</strong>
-            <a class="rightItem" href="#">更多</a>
-        </div>
-        <table class="table table-striped table-hover" style="margin-top: 10px">
-            <thead>
-            <tr>
-                <th>歌名</th>
-                <th>作者</th>
-                <th>专辑</th>
-                <th>播放/下载</th>
-                <th>时长</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            <tr>
-                <td>music1</td>
-                <td>Anna</td>
-                <td>album1</td>
-                <td class="operate">
-                    <img class="img-responsive operateItem" src="image/play.png">
-                    <img class="img-responsive operateItem" src="image/download.png">
-                </td>
-                <td>5:00</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6 left">
-        <div class="itemTitle">
-            <strong class="leftItem">热门歌手</strong>
-            <a class="rightItem" href="#">更多</a>
-        </div>
-        <div class="geshou row">
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-            <div class="col-md-3">
-                <img src="http://singerimg.kugou.com/uploadpic/pass/softhead/240/20161209/20161209164303152140.jpg"
-                     class="img-responsive">
-            </div>
-        </div>
-    </div>
-</div>
-<div class="footer row">
+    <div class="footer row">
 
-    <div class="col-md-6 text-center">
-        <p>作者：赵田田</p>
-    </div>
-    <div class="col-md-6 text-center">
-        <p>大学：武汉理工大学</p>
-    </div>
+        <div class="col-md-6 text-center">
+            <p>作者：赵田田</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <p>大学：武汉理工大学</p>
+        </div>
 
-    <div class="col-md-6 text-center">
-        <p>指导老师：潘昊</p>
+        <div class="col-md-6 text-center">
+            <p>指导老师：潘昊</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <p>邮箱：1290507445@qq.com</p>
+        </div>
+
     </div>
-    <div class="col-md-6 text-center">
-        <p>邮箱：1290507445@qq.com</p>
-    </div>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: true,
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
 
-</div>
-<script>
-    var mySwiper = new Swiper('.swiper-container', {
-        direction: 'horizontal',
-        loop: true,
-        autoplay: true,
-        // 如果需要分页器
-        pagination: {
-            el: '.swiper-pagination',
-        },
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
 
-        // 如果需要前进后退按钮
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-        // // 如果需要滚动条
-        // scrollbar: {
-        //     el: '.swiper-scrollbar',
-        // },
-    })
-</script>
+        })
+    </script>
 </body>
 </html>
