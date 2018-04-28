@@ -2,6 +2,7 @@ package com.ztt.dao;
 
 import com.ztt.bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface IUserDao {
      public String isExitByEmail(String useremail);
      public User getUserByEmail(String useremail);
      public int loginUser(User user);
+     public User getUserById(String id);
+     public ArrayList<User> getAlluser();
 }

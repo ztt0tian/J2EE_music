@@ -24,7 +24,6 @@ import java.util.Map;
  */
 @Namespace("/user")
 @ParentPackage("struts-default")
-@Component("regist")
 @Scope("prototype")
 public class UserAction extends ActionSupport {
     @Autowired
@@ -61,5 +60,13 @@ public class UserAction extends ActionSupport {
             return "pwderror";
         }
         return "noexist";//用户不存在
+    }
+    @Action(value = "exit",results = {
+            @Result(name = "success",location = "/index.jsp")
+    })
+    public String quit(){
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        session.remove("login_user");
+        return "success";
     }
 }

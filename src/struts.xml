@@ -6,7 +6,7 @@
 
 <struts>
     <!--使用开发模式，详细错误提示-->
-    <constant name="struts.devMode" value="true"></constant>
+    <constant name="struts.devMode" value="false"></constant>
     <!--将对象交给spring管理-->
     <constant name="struts.objectFactory" value="spring"></constant>
     <!--知道资源编码类型-->

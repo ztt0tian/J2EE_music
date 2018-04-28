@@ -41,4 +41,9 @@ public class UserServices implements IUserServices {
     public User getUserService(String useremail) {
         return userDao.getUserByEmail(useremail);
     }
+
+    @Override
+    public User getUserByID(String userid) {
+        return userDao.getUserById(userid);
+    }
 }

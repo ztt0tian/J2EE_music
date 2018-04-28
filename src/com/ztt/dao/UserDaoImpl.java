@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 
 
 /**
@@ -44,11 +45,10 @@ public class UserDaoImpl implements IUserDao {
 
         return false;
     }
-
     @Override
     public String isExitByEmail(String useremail) {
-        String hql="from User user where user.email='"+useremail+"'";
-        System.out.println(hql);
+//        String hql="from User user where user.email='"+useremail+"'";
+//        System.out.println(hql);
         Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.email=?").setParameter(0,useremail);
         User db_user = (User) query.uniqueResult();
         if(db_user==null){
@@ -62,10 +62,23 @@ public class UserDaoImpl implements IUserDao {
         if(isExitByEmail(useremail)!=null){
             String hql="from User user where user.email="+useremail;
             System.out.println(hql);
-            Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.email=?").setParameter(0,useremail);
+            Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.email=?0").setParameter(0,useremail);
             User db_user = (User) query.uniqueResult();
             return db_user;
         }
         return null;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        return (User) sessionFactory.getCurrentSession().get(User.class,id);
+    }
+
+    @Override
+    public ArrayList<User> getAlluser() {
+        String hql="from User user";
+        Query query=sessionFactory.getCurrentSession().createQuery(hql);
+        ArrayList<User> users=(ArrayList<User>) query.list();
+        return users;
     }
 }

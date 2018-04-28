@@ -13,6 +13,7 @@ public interface IUserServices {
     public boolean userRegistService(User user);
     public ArrayList<User> getAllUserService();
     public User getUserService(String useremail);
+    public User getUserByID(String userid);
     public int userLoginService(User user);
     public int userModifyService(User user);
 }

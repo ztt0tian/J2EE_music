@@ -1,6 +1,7 @@
 package com.ztt.bean;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author zhaotian
@@ -14,6 +15,12 @@ public class User {
     private String password;//密码
     private String type;//会员标志
     private String email;//邮箱 用于找回密码
+
+    //一些行为记录 用于获得用户的隐式反馈数据 方便后期的个性化音乐推荐
+    private List<User_search_history> search_historys;//搜索记录
+    private List<User_collect_music_history> collect_music_histories;//收藏音乐记录
+    private List<User_play_music_history> play_music_histories;//播放音乐记录
+    private List<User_download_music_history> download_music_histories;//下载音乐记录
     @Id
     @Column(name = "id",unique = true,nullable = false)
     public String getId() {
@@ -58,5 +65,37 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    public List<User_search_history> getSearch_historys() {
+        return search_historys;
+    }
+    public void setSearch_historys(List<User_search_history> search_historys) {
+        this.search_historys = search_historys;
+    }
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    public List<User_collect_music_history> getCollect_music_histories() {
+        return collect_music_histories;
+    }
+
+    public void setCollect_music_histories(List<User_collect_music_history> collect_music_histories) {
+        this.collect_music_histories = collect_music_histories;
+    }
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    public List<User_play_music_history> getPlay_music_histories() {
+        return play_music_histories;
+    }
+
+    public void setPlay_music_histories(List<User_play_music_history> play_music_histories) {
+        this.play_music_histories = play_music_histories;
+    }
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    public List<User_download_music_history> getDownload_music_histories() {
+        return download_music_histories;
+    }
+
+    public void setDownload_music_histories(List<User_download_music_history> download_music_histories) {
+        this.download_music_histories = download_music_histories;
     }
 }
