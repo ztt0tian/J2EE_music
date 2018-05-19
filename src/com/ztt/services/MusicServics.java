@@ -51,6 +51,11 @@ public class MusicServics implements IMusicServices {
     }
 
     @Override
+    public int song_collect_counts_decrease(String music_id) {
+        return musicDao.decrease_music_collect_counts(music_id);
+    }
+
+    @Override
     public ArrayList<Song> get_top_play() {
         return musicDao.Play_Top();
     }
@@ -63,5 +68,10 @@ public class MusicServics implements IMusicServices {
     @Override
     public ArrayList<Song> get_top_download() {
         return musicDao.Download_Top();
+    }
+
+    @Override
+    public ArrayList<Song> get_index_new_top() {
+        return musicDao.index_New_Top();
     }
 }

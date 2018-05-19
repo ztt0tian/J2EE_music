@@ -51,3 +51,32 @@
 .operate:after{
     overflow: hidden;
 }
+
+.mytable {
+    table-layout: fixed;
+    width: 98% ;
+    border:0px;
+    margin: 0px;
+}
+
+.mytable tr td {
+    text-overflow: ellipsis; /* for IE */
+    -moz-text-overflow: ellipsis; /* for Firefox,mozilla */
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: left;
+}
+#top_song_1 li:hover,#top_song_2 li:hover{
+    background-color: #5bc0de;
+}
+.geshouItem{
+    margin-top:2px;
+}
+.blur {
+    filter: url(blur.svg#blur); /* FireFox, Chrome, Opera */
+    -webkit-filter: blur(40px); /* Chrome, Opera */
+    -moz-filter: blur(40px);
+    -ms-filter: blur(40px);
+    filter: blur(40px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}

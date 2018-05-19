@@ -41,17 +41,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">登录</h4>
+                <h4 class="modal-title" id="myModalLabel">用户登录</h4>
             </div>
             <div class="modal-body">
-                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="get">
+                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入邮箱" required>
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="text" name="user.password" class="form-control" id="name23" placeholder="请输入名称">
+                        <input type="password" name="user.password" class="form-control" id="name23"
+                               placeholder="请输入密码" required>
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -59,12 +60,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -72,28 +69,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="RegistModalLabel">注册</h4>
+                <h4 class="modal-title" id="RegistModalLabel">用户注册</h4>
             </div>
             <div class="modal-body">
-                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="get">
-                    <%--<div class="form-group" hidden>--%>
-                    <%--<input type="text" name="user.id" class="form-control" value="1214564">--%>
-                    <%--</div>--%>
+                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="dsad" placeholder="请输入名称">
-                    </div>
-                    <div class="form-group">
-                        <label>密码</label>
-                        <input type="password" name="user.password" class="form-control" id="ddd" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" placeholder="请输入邮箱" required>
                     </div>
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="text" name="user.name" class="form-control" id="54" placeholder="请输入名称">
+                        <input type="text" name="user.name" class="form-control" placeholder="请输入名称" required>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="user.password" class="form-control" placeholder="请输入密码" required>
                     </div>
                     <div class="form-group" hidden>
                         <label>用户类型</label>
-                        <input type="text" name="user.type" class="form-control" id="545" value="0">
+                        <input type="text" name="user.type" class="form-control" value="0">
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -101,12 +95,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="top row">
     <strong class="col-md-4 text-center">z-music</strong>
@@ -144,10 +134,10 @@
     <div class="navbar">
         <ul class="nav nav-pills nav-justified">
             <li><a href="<%=basePath %>index.jsp"><strong>首页</strong></a></li>
-            <li><a href="<%=basePath %>pages/ranklist.jsp?rankType=1"><strong>榜单</strong></a></li>
+            <li><a href="<%=basePath %>musicrank/song_rank?rankType=playTop"><strong>榜单</strong></a></li>
             <li><a href="<%=basePath %>pages/singer.jsp"><strong>歌手</strong></a></li>
             <li><a href="<%=basePath %>pages/songsheet.jsp"><strong>歌单</strong></a></li>
-            <li   class="active" ><a href="<%=basePath %>pages/mymusic.jsp"><strong>我的音乐</strong></a></li>
+            <li class="active"><a href="<%=basePath%>music/recommend"><strong>我的音乐</strong></a></li>
         </ul>
     </div>
 </div>
@@ -174,7 +164,7 @@
                 <th>作者</th>
                 <th>专辑</th>
                 <th>播放/下载</th>
-                <th>收藏</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -186,10 +176,10 @@
                     <td class="operate">
                         <a href="<%=basePath %>music/play?song_id=<s:property value="#song.song_id"/>" target="_blank"><img
                                 class="img-responsive operateItem" src="<%=basePath %>image/play.png"></a>
-                        <a href="#"><img class="img-responsive operateItem" src="<%=basePath %>image/download.png"></a>
+                        <a href="<%=basePath %>file/download?song_id=<s:property value="#song.song_id"/>"><img class="img-responsive operateItem" src="<%=basePath %>image/download.png"></a>
                     </td>
                     <td class="collect">
-                        <a href="#"><img class="img-responsive operateItem"
+                        <a href="<%=basePath %>music/cancle_in_collects?song_id=<s:property value="#song.song_id"/>"><img class="img-responsive operateItem"
                                          src="<%=basePath %>image/collection_suc.png"></a>
                     </td>
                 </tr>

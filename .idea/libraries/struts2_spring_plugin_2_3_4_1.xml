@@ -2,8 +2,19 @@
   <library name="struts2-spring-plugin-2.3.4.1">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../SSH_model/lib/struts2-spring-plugin-2.3.4.1.jar!/" />
+      <root url="jar://P:/json/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://P:/struts-2.5.14.1-all/struts-2.5.14.1/lib/commons-collections-3.2.2.jar!/" />
+      <root url="jar://P:/struts-2.5.14.1-all/struts-2.5.14.1/lib/commons-beanutils-1.9.2.jar!/" />
+      <root url="file://P:/工程所需要jar文件" />
+      <root url="jar://P:/工程所需要jar文件/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://P:/工程所需要jar文件/ezmorph-1.0.6.jar!/" />
+      <root url="jar://P:/工程所需要jar文件/commons-logging-1.2.jar!/" />
+      <root url="jar://P:/工程所需要jar文件/commons-lang-2.6.jar!/" />
+      <root url="jar://P:/工程所需要jar文件/commons-collections-3.2.1.jar!/" />
+      <root url="jar://P:/工程所需要jar文件/commons-beanutils-1.8.3.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://P:/工程所需要jar文件" recursive="false" />
   </library>
 </component>

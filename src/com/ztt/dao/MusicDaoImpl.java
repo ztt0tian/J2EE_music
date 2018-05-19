@@ -2,8 +2,6 @@ package com.ztt.dao;
 
 import com.ztt.bean.Song;
 import com.ztt.bean.User;
-import com.ztt.bean.User_search_history;
-import com.ztt.util.Timetool;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +93,12 @@ public class MusicDaoImpl implements IMusicDao {
     }
 
     @Override
+    public int decrease_music_collect_counts(String music_id) {
+        String hql="update Song song set song.collect_nums=song.collect_nums-1 where song.id= :song_id";
+        return sessionFactory.getCurrentSession().createQuery(hql).setString("song_id",music_id).executeUpdate();
+    }
+
+    @Override
     public ArrayList<Song> Play_Top() {
         String hql="from Song song order by song.listen_nums desc";
         Query query=sessionFactory.getCurrentSession().createQuery(hql).setMaxResults(30);
@@ -114,6 +118,13 @@ public class MusicDaoImpl implements IMusicDao {
     public ArrayList<Song> Download_Top() {
         String hql="from Song song order by song.download_nums desc";
         Query query=sessionFactory.getCurrentSession().createQuery(hql).setMaxResults(30);
+        ArrayList<Song> songs=(ArrayList<Song>) query.list();
+        return songs;
+    }
+    @Override
+    public ArrayList<Song> index_New_Top() {
+        String hql="from Song song order by song.download_nums desc";
+        Query query=sessionFactory.getCurrentSession().createQuery(hql).setMaxResults(8);
         ArrayList<Song> songs=(ArrayList<Song>) query.list();
         return songs;
     }

@@ -50,4 +50,19 @@ public class UserOperateRecodeServices implements IUserOperateRecordServices {
     public ArrayList<Song> get_user_recommands(String userid) {
         return operationhistoryDao.GetUser_recommendation(userid);
     }
+
+    @Override
+    public ArrayList<Song> get_user_downloads(String user_id) {
+        return operationhistoryDao.GetUser_all_download_history(user_id);
+    }
+
+    @Override
+    public int is_exist_collect_record(String user_id, String song_id) {
+        return operationhistoryDao.isCollect(user_id,song_id);
+    }
+
+    @Override
+    public int delete_user_collect(String user_id, String song_id) {
+      return operationhistoryDao.delete_collect_history(user_id,song_id);
+    }
 }

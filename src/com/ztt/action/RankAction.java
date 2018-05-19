@@ -55,6 +55,7 @@ public class RankAction extends ActionSupport{
         //System.out.println(rankType=="playTop");
         if(rankType.equals("playTop")){
             songs=musicServics.get_top_play();
+            System.out.println(songs.size());
             httpServletRequest.setAttribute("top_play",songs);
             return "success";
         }

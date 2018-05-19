@@ -48,7 +48,6 @@
     </bean>
     <!-- 用注解来实现事务管理 -->
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
-
     <!--aop 注解实现日志 让spring使用cglib的代理方式-->
     <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 </beans>

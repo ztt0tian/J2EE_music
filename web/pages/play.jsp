@@ -24,6 +24,7 @@
     <!--<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="<%=basePath %>css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath %>css/index.css" rel="stylesheet">
+    <link href="<%=basePath %>css/play.css" rel="stylesheet">
     <link rel="stylesheet" href="<%=basePath %>css/swiper.min.css">
     <!-- 可选的Bootstrap主题文件（一般不使用） -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></script>
@@ -34,13 +35,65 @@
     <script src="<%=basePath%>js/method.js"></script>
 </head>
 <body>
-<script>
-    if(!<%=song%>){
 
-        alert("空的");
+<style>
+    .bg-area  {
+        width: 87%;
+        height: 80%;
+        z-index: -11;
+        position: absolute;
+        background-image: url("<%=song.getSong_pic_url()%>");
+        background-repeat: no-repeat;
+        background-size:80% 100%;
+        -moz-background-size:80% 100%;
+        -webkit-filter: blur(20px);
+        filter: blur(20px);
     }
-    else {
-        alert("<%=song.getSong_id()%>");
+</style>
+<script type="text/javascript">
+    function confirm_Collect(userid, songid) {
+        $.ajax({
+            url: "<%=basePath%>ajax/confirm_collect",
+            type: 'post',
+            data: {"user_id": userid, "song_id": songid},
+            dtatType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',//设置编码格式
+            error: function () {
+                alert('收藏失败');
+                //window.location.reload();
+            },
+            success: function (backdata) {
+                //alert(backdata);
+                document.getElementById('collect_operation').onclick = function (ev) {
+                    cancle_Collect(userid, songid)
+                };
+                var collect_pic = document.getElementById("collect-image");
+                collect_pic.setAttribute("src", "<%=basePath %>image/loveyes.png");
+            }
+        })
+
+    }
+
+    function cancle_Collect(userid, songid) {
+        $.ajax({
+            url: "<%=basePath%>ajax/cancle_collect",
+            type: 'post',
+            data: {user_id: userid, song_id: songid},
+            dtatType: 'json',
+            contentType: 'application/x-www-form-urlencoded; charset=utf-8',//设置编码格式
+            error: function () {
+                alert('取消收藏失败');
+            },
+            success: function (backdata) {
+                //alert(backdata);
+                document.getElementById('collect_operation').onclick = function (ev) {
+                    confirm_Collect(userid, songid)
+                };
+                var collect_pic = document.getElementById("collect-image");
+                collect_pic.setAttribute("src", "<%=basePath %>image/love.png");
+            }
+        })
+
     }
 </script>
 <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -48,17 +101,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">登录</h4>
+                <h4 class="modal-title" id="myModalLabel">用户登录</h4>
             </div>
             <div class="modal-body">
-                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="get">
+                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入邮箱" required>
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="text" name="user.password" class="form-control" id="name23" placeholder="请输入名称">
+                        <input type="password" name="user.password" class="form-control" id="name23"
+                               placeholder="请输入密码" required>
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -66,12 +120,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -79,28 +129,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="RegistModalLabel">注册</h4>
+                <h4 class="modal-title" id="RegistModalLabel">用户注册</h4>
             </div>
             <div class="modal-body">
-                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="get">
-                    <%--<div class="form-group" hidden>--%>
-                    <%--<input type="text" name="user.id" class="form-control" value="1214564">--%>
-                    <%--</div>--%>
+                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="dsad" placeholder="请输入名称">
-                    </div>
-                    <div class="form-group">
-                        <label>密码</label>
-                        <input type="password" name="user.password" class="form-control" id="ddd" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" placeholder="请输入邮箱" required>
                     </div>
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="text" name="user.name" class="form-control" id="54" placeholder="请输入名称">
+                        <input type="text" name="user.name" class="form-control" placeholder="请输入名称" required>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="user.password" class="form-control" placeholder="请输入密码" required>
                     </div>
                     <div class="form-group" hidden>
                         <label>用户类型</label>
-                        <input type="text" name="user.type" class="form-control" id="545" value="0">
+                        <input type="text" name="user.type" class="form-control" value="0">
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -108,12 +155,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="top row">
     <strong class="col-md-4 text-center">z-music</strong>
@@ -151,69 +194,100 @@
     <div class="navbar">
         <ul class="nav nav-pills nav-justified">
             <li><a href="<%=basePath %>index.jsp"><strong>首页</strong></a></li>
-            <li><a href="<%=basePath %>pages/ranklist.jsp?rankType=1"><strong>榜单</strong></a></li>
+            <li><a href="<%=basePath %>musicrank/song_rank?rankType=playTop"><strong>榜单</strong></a></li>
             <li><a href="<%=basePath %>pages/singer.jsp"><strong>歌手</strong></a></li>
             <li><a href="<%=basePath %>pages/songsheet.jsp"><strong>歌单</strong></a></li>
             <li><a href="<%=basePath%>music/recommend"><strong>我的音乐</strong></a></li>
         </ul>
     </div>
-
     <div class="container">
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-2">
             <img class="img-responsive" src="<%=song.getSong_pic_url()%>">
-            <div class="col-md-8 col-md-offset-3">
-                <button class="btn-lg btn-primary downloadBtn">
-                    <strong>下载这首歌</strong>
-                </button>
-            </div>
         </div>
-        <div class="col-md-8 text-center">
-            <div class="lric-content col-md-offset-3 col-md-6">
-                <div class="lric-text">
-                <pre class="left">
-                    歌名<%=song.getSong_name()%>
-                    歌手<%=song.getSinger().getSinger_name()%>
-                    专辑<%=song.getAlbum().getAlbum_name()%>
-                </pre>
-
+        <div class="col-md-6">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><img class="img-responsive" title="歌名"
+                                                               src="<%=basePath %>image/song.png"></label>
+                    <label class="col-sm-10 control-label"><h3 class="left-h3"><%=song.getSong_name()%></h3></label>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><img class="img-responsive" title="歌手"
+                                                               src="<%=basePath %>image/singer.png"></label>
+                    <label class="col-sm-10 control-label"><h3 class="left-h3"><%=song.getSinger().getSinger_name()%></h3></label>
+                </div>
+                <div class="form-group" >
+                    <label class="col-sm-2 control-label"><img class="img-responsive" title="专辑"
+                                                               src="<%=basePath %>image/album.png"></label>
+                    <label class="col-sm-10 control-label"><h3 class="left-h3"><%=song.getAlbum().getAlbum_name()%></h3></label>
+                </div>
+            </form>
+        </div>
+        <div class="bg-area">
         </div>
     </div>
-    <div id="music-audio-contain" class="col-md-12">
-        <div id="music-audio">
-            <div class="col-md-9 col-md-offset-1" style="display: inline-block">
-                <audio autoplay loop class="container center-block" controls
-                       src="<%=song.getSong_url()%>">
-                </audio>
+
+    <div class="navbar-fixed-bottom">
+        <div id="music-audio-contain" class="col-md-12">
+            <div id="music-audio">
+                <div class="col-md-9 col-md-offset-1" style="display: inline-block">
+                    <audio autoplay loop class="container center-block" controls
+                           src="<%=song.getSong_url()%>">
+                    </audio>
+                </div>
+
+            </div>
+            <div class="col-md-2" style="margin-top: 0.5em">
+                <a href="<%=basePath %>file/download?song_id=<%=song.getSong_id()%>" id="download"
+                   class="col-md-3 col-sm-offset-2 text-center "><img class="img-responsive"
+                                                                      src="<%=basePath %>image/downloadwhite2.png"></a>
+                <%
+                    if (user == null) {
+                %>
+                <a href="javascript:void(0);" id="collect_operation" onclick="alert('请先登录')"
+                   class="col-md-3 text-center"><img id="collect-image" class="img-responsive"
+                                                     src="<%=basePath %>image/love.png"></a>
+                <%
+                    }
+                %>
+                <%
+                    if (request.getAttribute("isCollect") != null && request.getAttribute("isCollect") == "yes") {
+                %>
+                <a href="javascript:void(0);" id="collect_operation"
+                   onclick="cancle_Collect('<%=user.getId()%>','<%=song.getSong_id() %>')"
+                   class="col-md-3 text-center"><img id="collect-image" class="img-responsive"
+                                                     src="<%=basePath %>image/loveyes.png"></a>
+                <%
+                    }
+                    if (user != null && request.getAttribute("isCollect") == null) {
+                %>
+                <a href="javascript:void(0);" id="collect_operation"
+                   onclick="confirm_Collect('<%=user.getId()%>','<%=song.getSong_id()%>')"
+                   class="col-md-3 text-center"><img id="collect-image" class="img-responsive"
+                                                     src="<%=basePath %>image/love.png"></a>
+                <%
+                    }
+                %>
             </div>
 
         </div>
-        <div class="col-md-2" style="margin-top: 0.5em">
-            <a href="#" id="playornot" class="col-md-3 col-sm-offset-2 text-center "><img class="img-responsive"
-                                                                                          src="<%=basePath %>image/downloadwhite2.png"></a>
-            <a href="<%=basePath %>music/collect?song_id=<%=song.getSong_id()%>" id="collectornot"
-               onclick="collectornot()" class="col-md-3 text-center"><img id="collect-image" class="img-responsive"
-                                                                           src="<%=basePath %>image/love.png"></a>
-        </div>
+        <div class="footer row ">
 
-    </div>
-    <div class="footer row">
+            <div class="col-md-6 text-center">
+                <p>作者：赵田田</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p>大学：武汉理工大学</p>
+            </div>
 
-        <div class="col-md-6 text-center">
-            <p>作者：赵田田</p>
-        </div>
-        <div class="col-md-6 text-center">
-            <p>大学：武汉理工大学</p>
-        </div>
+            <div class="col-md-6 text-center">
+                <p>指导老师：潘昊</p>
+            </div>
+            <div class="col-md-6 text-center">
+                <p>邮箱：1290507445@qq.com</p>
+            </div>
 
-        <div class="col-md-6 text-center">
-            <p>指导老师：潘昊</p>
         </div>
-        <div class="col-md-6 text-center">
-            <p>邮箱：1290507445@qq.com</p>
-        </div>
-
     </div>
 </body>
 </html>

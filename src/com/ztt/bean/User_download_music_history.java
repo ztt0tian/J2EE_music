@@ -58,4 +58,13 @@ public class User_download_music_history {
     public void setMusic_download_time(Date music_download_time) {
         this.music_download_time = music_download_time;
     }
+
+    public User_download_music_history() {
+    }
+
+    public User_download_music_history(User user, Song song, Date music_download_time) {
+        this.user = user;
+        this.song = song;
+        this.music_download_time = music_download_time;
+    }
 }

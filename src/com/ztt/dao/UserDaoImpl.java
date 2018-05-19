@@ -41,9 +41,10 @@ public class UserDaoImpl implements IUserDao {
         return 0;//密码错误
     }
     @Override
-    public boolean isExitByName(String username) {
-
-        return false;
+    public User isExitByName(String username) {
+        Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.name=?").setParameter(0,username);
+        User db_user = (User) query.uniqueResult();
+        return db_user;
     }
     @Override
     public String isExitByEmail(String useremail) {
@@ -60,9 +61,7 @@ public class UserDaoImpl implements IUserDao {
     @Override
     public User getUserByEmail(String useremail) {
         if(isExitByEmail(useremail)!=null){
-            String hql="from User user where user.email="+useremail;
-            System.out.println(hql);
-            Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.email=?0").setParameter(0,useremail);
+            Query query=sessionFactory.getCurrentSession().createQuery("from User user where user.email=:email").setParameter("email",useremail);
             User db_user = (User) query.uniqueResult();
             return db_user;
         }

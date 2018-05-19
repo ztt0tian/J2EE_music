@@ -1,12 +1,9 @@
 package com.ztt.dao;
 
-import com.ztt.bean.Album;
-import com.ztt.bean.Singer;
 import com.ztt.bean.Song;
 import com.ztt.bean.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * @author zhaotian
@@ -24,7 +21,9 @@ public interface IMusicDao {
     public ArrayList<Song> Play_Top();//播放榜
     public ArrayList<Song> Collect_Top();//收藏榜
     public ArrayList<Song> Download_Top();//下载榜
+    public ArrayList<Song> index_New_Top();//新歌榜
     public int update_music_play_counts(String music_id);//播放量增加
     public int update_music_collect_counts(String music_id);//收藏量增加
+    public int decrease_music_collect_counts(String music_id);
     public int update_music_download_counts(String music_id);//下载量增加
 }

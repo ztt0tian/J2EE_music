@@ -34,14 +34,15 @@
                 <h4 class="modal-title" id="myModalLabel">登录</h4>
             </div>
             <div class="modal-body">
-                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="get">
+                <form class="lgoinForm" role="form" action="<%=basePath%>user/login" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" id="name2" placeholder="请输入邮箱">
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="text" name="user.password" class="form-control" id="name23" placeholder="请输入名称">
+                        <input type="password" name="user.password" class="form-control" id="name23"
+                               placeholder="请输入密码">
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -49,12 +50,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
@@ -65,25 +62,22 @@
                 <h4 class="modal-title" id="RegistModalLabel">注册</h4>
             </div>
             <div class="modal-body">
-                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="get">
-                    <%--<div class="form-group" hidden>--%>
-                    <%--<input type="text" name="user.id" class="form-control" value="1214564">--%>
-                    <%--</div>--%>
+                <form class="RegistForm" role="form" action="<%=basePath%>user/regist" method="post">
                     <div class="form-group">
                         <label>邮箱</label>
-                        <input type="text" name="user.email" class="form-control" id="dsad" placeholder="请输入名称">
-                    </div>
-                    <div class="form-group">
-                        <label>密码</label>
-                        <input type="password" name="user.password" class="form-control" id="ddd" placeholder="请输入名称">
+                        <input type="text" name="user.email" class="form-control" placeholder="请输入邮箱">
                     </div>
                     <div class="form-group">
                         <label>用户名</label>
-                        <input type="text" name="user.name" class="form-control" id="54" placeholder="请输入名称">
+                        <input type="text" name="user.name" class="form-control" placeholder="请输入名称">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="user.password" class="form-control" placeholder="请输入密码">
                     </div>
                     <div class="form-group" hidden>
                         <label>用户类型</label>
-                        <input type="text" name="user.type" class="form-control" id="545" value="0">
+                        <input type="text" name="user.type" class="form-control" value="0">
                     </div>
                     <div class="form-group">
                         <button type="reset" class="btn btn-default">重置</button>
@@ -91,12 +85,8 @@
                     </div>
                 </form>
             </div>
-            <!--<div class="modal-footer">-->
-            <!--<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>-->
-            <!--<button type="submit" class="btn btn-primary btn-success">登录</button>-->
-            <!--</div>-->
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
 <div class="top row">
     <strong class="col-md-4 text-center">z-music</strong>

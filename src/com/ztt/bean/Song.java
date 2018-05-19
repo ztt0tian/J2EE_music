@@ -1,6 +1,7 @@
 package com.ztt.bean;
 
 import com.ztt.enumType.SongType;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Song {
     private long download_nums;//总音频下载次数
     private List<User_collect_music_history> music_collect_historys;//音频收藏记录
     private List<User_download_music_history> music_download_historys;//音频下载记录
+    private List<Recommand_musics> recommand_musics;//推荐列表关联
     @Id
     @GenericGenerator(name = "generator",strategy="uuid.hex")
     @Column(name= "id",unique = true,nullable = false)
@@ -54,7 +56,7 @@ public class Song {
     public void setSinger(Singer singer) {
         this.singer = singer;
     }
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,optional = true)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,optional = true)
     @JoinColumn(name = "album_id",nullable = true)
     public Album getAlbum() {
         return album;
@@ -136,5 +138,18 @@ public class Song {
 
     public void setKugou_url(String kugou_url) {
         this.kugou_url = kugou_url;
+    }
+
+    @ManyToMany
+    @Cascade(value = {org.hibernate.annotations.CascadeType.ALL})
+    @JoinTable(name = "recommand_song",joinColumns = {
+            @JoinColumn(name = "song_id")
+    },inverseJoinColumns = {@JoinColumn(name = "recommand_id")})
+    public List<Recommand_musics> getRecommand_musics() {
+        return recommand_musics;
+    }
+
+    public void setRecommand_musics(List<Recommand_musics> recommand_musics) {
+        this.recommand_musics = recommand_musics;
     }
 }

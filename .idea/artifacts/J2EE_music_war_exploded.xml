@@ -22,6 +22,7 @@
           <element id="library" level="project" name="cglib-3.0" />
           <element id="library" level="project" name="aspectjweaver-1.8.7" />
           <element id="library" level="project" name="slf4j-api-1.7.25" />
+          <element id="library" level="application" name="struts2-json-plugin-2.5.14.1" />
         </element>
       </element>
     </root>

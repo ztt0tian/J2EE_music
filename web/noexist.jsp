@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-用户不存在
+此账号不存在
 </body>
 </html>

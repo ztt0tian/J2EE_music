@@ -6,7 +6,8 @@ package com.ztt.util;
  */
 public class Caculate_Score {
     public static double generateScore(double percent,int isCollect,int isDownload){
-        //播放70分，收藏20分，下载10分
-        return  percent*70+isCollect*20*0.2+isDownload*10*0.1;
+        //播放7分，收藏2分，下载1分
+        //return  percent*7+isCollect*2*0.2+isDownload*1*0.1;
+        return  percent*7.0+isCollect*2.0+isDownload*1.0;
     }
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public interface IUser_operation_history {
     public void add_search_history(User_search_history user_search_history);
     public void add_collect_history(User_collect_music_history user_collect_music_history);
+    public int delete_collect_history(String user_id, String song_id);
     public void add_play_history(User_play_music_history user_play_music_history);
     public void add_download_history(User_download_music_history user_download_music_history);
     public ArrayList<Song> GetUser_all_collect_history(String user_id);

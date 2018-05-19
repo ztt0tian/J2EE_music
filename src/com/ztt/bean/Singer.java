@@ -4,7 +4,6 @@ import com.ztt.enumType.SingerType;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,7 +61,7 @@ public class Singer {
     public void setSinger_albums(List<Album> singer_albums) {
         this.singer_albums = singer_albums;
     }
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "singer")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "singer")
     public List<Song> getSinger_songs() {
         return singer_songs;
     }

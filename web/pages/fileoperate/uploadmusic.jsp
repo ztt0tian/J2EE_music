@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="/file/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="music"/><br>
+    <input type="submit" value="上传"><br>
+</form>
 </body>
 </html>

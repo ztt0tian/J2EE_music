@@ -15,6 +15,7 @@ public class User {
     private String password;//密码
     private String type;//会员标志
     private String email;//邮箱 用于找回密码
+    private Recommand_musics recommand_musics;//推荐音乐
 
     //一些行为记录 用于获得用户的隐式反馈数据 方便后期的个性化音乐推荐
     private List<User_search_history> search_historys;//搜索记录
@@ -97,5 +98,14 @@ public class User {
 
     public void setDownload_music_histories(List<User_download_music_history> download_music_histories) {
         this.download_music_histories = download_music_histories;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
+    public Recommand_musics getRecommand_musics() {
+        return recommand_musics;
+    }
+
+    public void setRecommand_musics(Recommand_musics recommand_musics) {
+        this.recommand_musics = recommand_musics;
     }
 }

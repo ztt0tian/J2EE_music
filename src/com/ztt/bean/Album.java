@@ -4,7 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * @author zhaotian
@@ -46,7 +45,7 @@ public class Album {
     public void setAlbum_author(Singer album_author) {
         this.album_author = album_author;
     }
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "album")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "album")
     public List<Song> getAlbum_songs() {
         return album_songs;
     }
